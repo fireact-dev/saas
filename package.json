@@ -1,0 +1,35 @@
+{
+  "name": "saas",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fireact.dev/core": "^1.0.3",
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
+    "@stripe/react-stripe-js": "^2.8.1",
+    "@stripe/stripe-js": "^4.9.0",
+    "dayjs": "^1.11.13",
+    "firebase": "^11.0.0",
+    "i18next": "^23.4.1",
+    "i18next-browser-languagedetector": "^7.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^15.1.0",
+    "react-router-dom": "^6.14.2",
+    "tailwindcss": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.18",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.4",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.8"
+  }
+}
