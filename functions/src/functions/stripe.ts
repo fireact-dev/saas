@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
 
 export const stripe = new Stripe(global.saasConfig.stripe.secret_api_key, {
-    apiVersion: "2024-10-28.acacia"
+    apiVersion: "2023-10-16"
 });
