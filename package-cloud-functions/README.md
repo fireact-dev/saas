@@ -10,6 +10,8 @@ Cloud Functions for Fireact SaaS applications.
 
 ## Installation
 
+Go to your `functions` folder.
+
 ```bash
 npm install @fireact.dev/saas-cloud-functions
 ```
@@ -87,7 +89,7 @@ Create or update your functions' `src/index.ts`:
 
 ```typescript
 import { initializeApp } from 'firebase-admin/app';
-import * as configFile from './saasConfig.json';
+import configFile from './saasConfig.json';
 import type { Plan, Permission } from '@fireact.dev/saas-cloud-functions';
 import {
   createSubscription,
@@ -150,7 +152,29 @@ export {
   updateBillingDetails,
   getBillingDetails,
   transferSubscriptionOwnership
-};
+}
+```
+
+Rewrite tsconfig.json as the example below.
+
+```
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "outDir": "lib",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2017",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "compileOnSave": true,
+  "include": [
+    "src"
+  ]
+}
 ```
 
 ### 4. Stripe Setup

@@ -4,11 +4,14 @@ SaaS components and utilities for Fireact applications.
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
+- [Setup Firebase](#setup-firebase)
 - [Installation](#installation)
 - [Project Setup](#project-setup)
   - [Configuration Setup](#configuration-setup)
   - [Stripe Configuration](#stripe-configuration)
+  - [Internationalization Setup](#internationalization-setup)
   - [Application Setup](#application-setup)
+- [Install the Cloud Functions](#install-the-cloud-functions)
 - [Components Reference](#components-reference)
 - [License](#license)
 
@@ -23,16 +26,82 @@ Ensure you have completed the following steps from the core setup:
 3. Internationalization setup
 4. Basic application structure
 
+## Setup Firebase
+
+1. **Initialise Firebase Cloud Functions
+
+Run `firebase init` to include Cloud Functions in your Firebase setup.
+
+2. **Update Firestore rules**:
+   - Navigate to "Firestore Database" in the Firebase Console.
+   - Copy the Firestore rules from the example below.
+
+   Example Firestore rules:
+   ```plaintext
+    rules_version = '2';
+
+    service cloud.firestore {
+      match /databases/{database}/documents {
+        // Allow authenticated users to read and write their own user document
+        match /users/{userId} {
+          allow read, write: if request.auth != null && request.auth.uid == userId;
+        }
+
+        // Subscription document rules
+        match /subscriptions/{docId} {
+          // Allow listing subscriptions for authenticated users
+          allow list: if request.auth != null;
+          
+          // Allow get (individual document read) only to users in permissions.access array
+          allow get: if request.auth != null 
+            && get(/databases/$(database)/documents/subscriptions/$(docId)).data.permissions.access.hasAny([request.auth.uid]);
+          
+          // Only allow updates to settings fields if user's UID is in permissions.admin array
+          allow update: if request.auth != null 
+            && get(/databases/$(database)/documents/subscriptions/$(docId)).data.permissions.admin.hasAny([request.auth.uid])
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['settings']);
+          
+          // Block all other write operations
+          allow create, delete: if false;
+
+          // Invoices subcollection rules
+          match /invoices/{invoiceId} {
+            // Allow reading invoices to subscription admins
+            allow read: if request.auth != null 
+              && get(/databases/$(database)/documents/subscriptions/$(docId)).data.permissions.admin.hasAny([request.auth.uid]);
+            
+            // Block direct writes - only allow through cloud functions
+            allow write: if false;
+          }
+        }
+
+        // Invites collection rules
+        match /invites/{inviteId} {
+          // Allow reading invites to:
+          // 1. Subscription admins
+          // 2. Users whose email matches the invite email
+          allow read: if request.auth != null && (
+            get(/databases/$(database)/documents/subscriptions/$(resource.data.subscription_id)).data.permissions.admin.hasAny([request.auth.uid])
+            || (request.auth.token.email != null && request.auth.token.email.lower() == resource.data.email)
+          );
+          
+          // Block direct writes - only allow through cloud functions
+          allow write: if false;
+        }
+      }
+    }
+   ```
+
 ## Installation
 
 ```bash
 npm install @fireact.dev/saas
 ```
 
-Install the required peer dependencies (if not already installed from @fireact.dev/core):
+Install the required peer dependencies:
 
 ```bash
-npm install @fireact.dev/core @headlessui/react@^1.7.15 @heroicons/react firebase i18next react-i18next react-router-dom tailwindcss
+npm install @stripe/stripe-js
 ```
 
 ## Project Setup
@@ -115,6 +184,22 @@ Create `src/saasConfig.json` with your SaaS configuration:
    - Create products for each plan
    - Create prices for each product
    - Copy the price IDs to use in your saasConfig.json
+
+### Internationalization Setup
+
+1. Create the i18n directory structure:
+```
+src/
+  i18n/
+    locales/
+      saas/
+        en.ts
+        zh.ts
+```
+
+2. Download the base language files from:
+https://github.com/fireact-dev/saas/tree/main/src/i18n/locales/saas
+
 
 ### Application Setup
 
@@ -275,6 +360,10 @@ function App() {
 
 export default App;
 ```
+
+## Install the Cloud Functions
+
+Follow the instructions (https://www.npmjs.com/package/@fireact.dev/saas-cloud-functions) to install the cloud functions
 
 ## Components Reference
 
