@@ -192,8 +192,11 @@ Rewrite tsconfig.json as the example below.
      - `customer.subscription.created`
      - `customer.subscription.updated`
      - `customer.subscription.deleted`
+     - `invoice.created`
      - `invoice.paid`
+     - `invoice.overdue`
      - `invoice.payment_failed`
+     - `invoice.updated`
    - Copy the signing secret to use as `end_point_secret` in saasConfig.json
 
 ### 5. Deploy to Firebase
@@ -252,6 +255,11 @@ firebase deploy --only functions
 ```bash
 firebase emulators:start
 ```
+
+## Troubleshooting
+
+- Deploy error: functions predeploy error: Command terminated with non-zero exit code 2
+To resolve this error, remove `"npm --prefix \"$RESOURCE_DIR\" run lint",` from the `firebase.json` file.
 
 ## License
 
