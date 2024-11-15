@@ -1,6 +1,6 @@
 # @fireact.dev/saas
 
-SaaS components and utilities for Fireact applications.
+SaaS components and utilities for fireact.dev applications.
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
@@ -17,7 +17,7 @@ SaaS components and utilities for Fireact applications.
 
 ## Prerequisites
 
-This package requires a Fireact application set up with @fireact.dev/core. Please follow the setup instructions at:
+This package requires a fireact.dev application set up with @fireact.dev/core. Please follow the setup instructions at:
 https://www.npmjs.com/package/@fireact.dev/core
 
 Ensure you have completed the following steps from the core setup:

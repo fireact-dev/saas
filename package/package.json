@@ -1,7 +1,7 @@
 {
   "name": "@fireact.dev/saas",
   "version": "1.0.1",
-  "description": "SaaS components and utilities for Fireact applications",
+  "description": "SaaS components and utilities for fireact.dev applications",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

@@ -1,6 +1,6 @@
 # @fireact.dev/saas-cloud-functions
 
-Cloud Functions for Fireact SaaS applications.
+Cloud Functions for fireact.dev SaaS applications.
 
 ## Prerequisites
 
