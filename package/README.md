@@ -200,6 +200,24 @@ src/
 2. Download the base language files from:
 https://github.com/fireact-dev/saas/tree/main/src/i18n/locales/saas
 
+### Update TailwindCSS
+
+Modify the `tailwind.config.js` file to support the `@fireact.dev/saas` package.
+
+```tsx
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/@fireact.dev/core/dist/**/*.{js,mjs}",
+    "./node_modules/@fireact.dev/saas/dist/**/*.{js,mjs}"
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
 
 ### Application Setup
 
@@ -207,6 +225,13 @@ Update your `src/App.tsx` to include SaaS components:
 
 ```tsx
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import en from './i18n/locales/en';
+import zh from './i18n/locales/zh';
+import enSaas from './i18n/locales/saas/en';
+import zhSaas from './i18n/locales/saas/zh';
 import {
   AuthProvider,
   ConfigProvider,
@@ -246,6 +271,31 @@ import {
 } from '@fireact.dev/saas';
 import config from './config.json';
 import saasConfig from './saasConfig.json';
+
+// Initialize i18next
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: {
+        translation: {
+          ...en,
+          ...enSaas
+        }
+      },
+      zh: {
+        translation: {
+          ...zh,
+          ...zhSaas
+        }
+      }
+    },
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false
+    }
+  });
 
 // Combine paths from both config files
 const paths = {

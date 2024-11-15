@@ -1,6 +1,6 @@
 {
   "name": "@fireact.dev/saas-cloud-functions",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Cloud Functions for Fireact SaaS applications",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
