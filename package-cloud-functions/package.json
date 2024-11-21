@@ -1,7 +1,7 @@
 {
   "name": "@fireact.dev/saas-cloud-functions",
-  "version": "1.0.5",
-  "description": "Cloud Functions for fireact.dev SaaS applications",
+  "version": "1.0.6",
+  "description": "Firebase Cloud Functions for SaaS applications, providing Stripe integration, subscription management, and automated billing workflows. Essential backend functionality for @fireact.dev/saas applications.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -21,6 +21,12 @@
   ],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fireact-dev/saas"
+  },
+  "homepage": "https://fireact.dev",
+  "documentation": "https://fireact.dev/saas",
   "publishConfig": {
     "access": "public"
   },
