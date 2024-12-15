@@ -13,7 +13,8 @@ import {
   EditEmail,
   ChangePassword,
   DeleteAccount,
-  Logo
+  Logo,
+  FirebaseAuthActions
 } from '@fireact.dev/core';
 import config from './config.json';
 import saasConfig from './saasConfig.json';
@@ -22,6 +23,8 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import en from './i18n/locales/en';
 import zh from './i18n/locales/zh';
+import enSaas from './i18n/locales/saas/en';
+import zhSaas from './i18n/locales/saas/zh';
 import CreatePlan from './components/CreatePlan';
 import Home from './components/Home';
 import SubscriptionDashboard from './components/SubscriptionDashboard';
@@ -40,17 +43,22 @@ import ManagePaymentMethods from './components/ManagePaymentMethods';
 import UpdateBillingDetails from './components/UpdateBillingDetails';
 import TransferSubscriptionOwnership from './components/TransferSubscriptionOwnership';
 
-// Initialize i18next
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
       en: {
-        translation: en
+        translation: {
+          ...en,
+          ...enSaas
+        }
       },
       zh: {
-        translation: zh
+        translation: {
+          ...zh,
+          ...zhSaas
+        }
       }
     },
     fallbackLng: 'en',
@@ -161,6 +169,7 @@ function App() {
                 <Route path={paths.signIn} element={<SignIn />} />
                 <Route path={paths.signUp} element={<SignUp />} />
                 <Route path={paths.resetPassword} element={<ResetPassword />} />
+                <Route path={config.pages.firebaseActions} element={<FirebaseAuthActions />} />
               </Route>
             </Routes>
           </LoadingProvider>

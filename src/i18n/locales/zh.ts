@@ -1,6 +1,4 @@
-import saas from './saas/zh';
-
-const core = {
+export default {
   "languageName": "中文",
   "signin": "登录",
   "signup": "注册",
@@ -47,6 +45,9 @@ const core = {
   "editEmail": "编辑邮箱",
   "editPassword": "修改密码",
   "verifyEmail": "验证邮箱",
+  "verifyingEmail": "正在验证您的邮箱地址...",
+  "failedToVerifyEmail": "验证邮箱地址失败",
+  "verificationFailed": "邮箱验证失败",
   "resendVerification": "重新发送验证",
   "save": "保存",
   "cancel": "取消",
@@ -74,10 +75,15 @@ const core = {
   "accountDeleted": "您的账户已成功删除。",
   "accountDeletionError": "删除账户失败，请重试。",
   "welcome": "欢迎",
-  "welcomeBack": "你好 {{name}}，欢迎回来！"
-};
-
-export default {
-  ...core,
-  ...saas
+  "welcomeBack": "你好 {{name}}，欢迎回来！",
+  "invalidOrMissingParameters": "无效或缺少参数",
+  "unsupportedOperation": "不支持的操作",
+  "confirmEmailChange": "确认更改邮箱",
+  "verifyingRequest": "正在验证您的请求...",
+  "confirmEmailChangeTo": "您确定要将邮箱更改为：",
+  "processingRequest": "正在处理您的请求...",
+  "recoverEmailTitle": "恢复原邮箱",
+  "recoverEmailMessage": "您想要恢复到原来的邮箱地址吗？",
+  "recoverEmailSuccess": "您的邮箱地址已成功恢复",
+  "recoverEmailError": "恢复原邮箱地址失败"
 }

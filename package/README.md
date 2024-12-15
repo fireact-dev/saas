@@ -246,7 +246,8 @@ import {
   EditEmail,
   ChangePassword,
   DeleteAccount,
-  Logo
+  Logo,
+  FirebaseAuthActions
 } from '@fireact.dev/core';
 import {
   CreatePlan,
@@ -399,6 +400,7 @@ function App() {
                 <Route path={paths.signIn} element={<SignIn />} />
                 <Route path={paths.signUp} element={<SignUp />} />
                 <Route path={paths.resetPassword} element={<ResetPassword />} />
+                <Route path={config.pages.firebaseActions} element={<FirebaseAuthActions />} />
               </Route>
             </Routes>
           </LoadingProvider>

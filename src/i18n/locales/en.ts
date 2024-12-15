@@ -1,6 +1,4 @@
-import saas from './saas/en';
-
-const core = {
+export default {
   "languageName": "English",
   "signin": "Sign in",
   "signup": "Sign up",
@@ -47,6 +45,9 @@ const core = {
   "editEmail": "Edit Email",
   "editPassword": "Change Password",
   "verifyEmail": "Verify Email",
+  "verifyingEmail": "Verifying your email address...",
+  "failedToVerifyEmail": "Failed to verify email address",
+  "verificationFailed": "Email verification failed",
   "resendVerification": "Resend Verification",
   "save": "Save",
   "cancel": "Cancel",
@@ -74,10 +75,15 @@ const core = {
   "accountDeleted": "Your account has been successfully deleted.",
   "accountDeletionError": "Failed to delete your account. Please try again.",
   "welcome": "Welcome",
-  "welcomeBack": "Hi {{name}}, welcome back!"
-};
-
-export default {
-  ...core,
-  ...saas
+  "welcomeBack": "Hi {{name}}, welcome back!",
+  "invalidOrMissingParameters": "Invalid or missing parameters",
+  "unsupportedOperation": "The requested operation is not supported",
+  "confirmEmailChange": "Confirm Email Change",
+  "verifyingRequest": "Verifying your request...",
+  "confirmEmailChangeTo": "Are you sure you want to change your email to:",
+  "processingRequest": "Processing your request...",
+  "recoverEmailTitle": "Recover Previous Email",
+  "recoverEmailMessage": "Do you want to revert your email address change?",
+  "recoverEmailSuccess": "Your email address has been successfully reverted",
+  "recoverEmailError": "Failed to recover your previous email address"
 }
