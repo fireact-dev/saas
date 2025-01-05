@@ -21,22 +21,24 @@ interface Props {
   desktopMenu: ReactNode;
   mobileMenu: ReactNode;
   logo: ReactNode;
-  brandName?: string;
   sidebarWidth?: string;
   collapsedSidebarWidth?: string;
   hideLanguageSwitcher?: boolean;
   additionalMenuItems?: ReactNode;
+  navBackgroundColor?: string;
+  navTextColor?: string;
 }
 
 export default function SubscriptionLayout({ 
   desktopMenu, 
   mobileMenu, 
   logo,
-  brandName = "Fireact",
   sidebarWidth = 'w-64',
   collapsedSidebarWidth = 'w-20',
   hideLanguageSwitcher = false,
-  additionalMenuItems
+  additionalMenuItems,
+  navBackgroundColor,
+  navTextColor
 }: Props) {
   const { signout, currentUser } = useAuth();
   const navigate = useNavigate();
@@ -46,7 +48,7 @@ export default function SubscriptionLayout({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null);
-  const { db, pages } = useConfig();
+  const { db, pages, name } = useConfig();
 
   useEffect(() => {
     async function fetchUserData() {
@@ -78,18 +80,18 @@ export default function SubscriptionLayout({
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Top Navigation */}
-      <nav className="bg-gray-900 shadow w-full">
+      <nav className={`${navBackgroundColor || 'bg-gray-900'} shadow w-full`}>
         <div className="px-4">
           <div className="flex justify-between h-16 w-full">
             <div className="flex px-2 lg:px-0">
               <div className="flex items-center">
                 <div className="flex items-center flex-shrink-0">
                   {logo}
-                  <span className="ml-2 text-xl font-bold text-white">{brandName}</span>
+                  <span className={`ml-2 text-xl font-bold ${navTextColor || 'text-white'}`}>{name}</span>
                 </div>
                 <button
                   onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                  className="ml-4 p-2 rounded-md text-gray-400 hover:text-gray-200 focus:outline-none hidden lg:block"
+                  className={`ml-4 p-2 rounded-md ${navTextColor || 'text-gray-400'} hover:${navTextColor || 'text-gray-200'} focus:outline-none hidden lg:block`}
                 >
                   <svg
                     className="h-6 w-6"
@@ -110,10 +112,10 @@ export default function SubscriptionLayout({
 
             {/* Mobile menu and language selector */}
             <div className="flex items-center space-x-2 lg:hidden">
-              {!hideLanguageSwitcher && <LanguageSwitcher />}
+              {!hideLanguageSwitcher && <LanguageSwitcher backgroundColor={navBackgroundColor} textColor={navTextColor} />}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-md text-gray-400 hover:text-gray-200 focus:outline-none"
+                className={`p-2 rounded-md ${navTextColor || 'text-gray-400'} hover:${navTextColor || 'text-gray-200'} focus:outline-none`}
               >
                 <svg
                   className="h-6 w-6"
@@ -133,7 +135,7 @@ export default function SubscriptionLayout({
 
             {/* Desktop nav items */}
             <div className="hidden lg:flex lg:items-center lg:space-x-4 pr-4">
-              {!hideLanguageSwitcher && <LanguageSwitcher />}
+              {!hideLanguageSwitcher && <LanguageSwitcher backgroundColor={navBackgroundColor} textColor={navTextColor} />}
               {additionalMenuItems}
               <div className="relative">
                 <button
@@ -141,7 +143,7 @@ export default function SubscriptionLayout({
                   className="flex items-center space-x-3 focus:outline-none"
                 >
                   <Avatar userData={userData} />
-                  <span className="text-gray-400 text-sm">{userData?.display_name}</span>
+                  <span className={`${navTextColor || 'text-gray-400'} text-sm`}>{userData?.display_name}</span>
                 </button>
                 {isDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
@@ -172,7 +174,7 @@ export default function SubscriptionLayout({
           </div>
 
           {/* Mobile menu */}
-          <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} lg:hidden bg-gray-900`}>
+          <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} lg:hidden ${navBackgroundColor || 'bg-gray-900'}`}>
             {/* Divider */}
             <div className="border-t border-gray-700"></div>
             

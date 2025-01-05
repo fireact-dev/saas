@@ -1,6 +1,6 @@
 {
   "name": "@fireact.dev/saas",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A comprehensive SaaS toolkit for Firebase applications, featuring subscription management, billing integration, and user management components. Built on top of @fireact.dev/core with TailwindCSS styling.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -32,6 +32,7 @@
     "access": "public"
   },
   "peerDependencies": {
+    "@fireact.dev/core": "^1.2.1",
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "firebase": "^11.0.0",
@@ -40,8 +41,7 @@
     "react-dom": "^18.3.0",
     "react-i18next": "^15.1.0",
     "react-router-dom": "^6.27.0",
-    "tailwindcss": "^3.4.0",
-    "@fireact.dev/core": "^1.2.0"
+    "tailwindcss": "^3.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.11",

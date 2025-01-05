@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fireact.dev/core": "^1.2.0",
+    "@fireact.dev/core": "^1.2.1",
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@stripe/react-stripe-js": "^2.8.1",
