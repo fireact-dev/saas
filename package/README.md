@@ -6,7 +6,7 @@ The @fireact.dev/saas package provides a starter kit for building SaaS web apps 
 
 ## Installation
 
-For installation instructions, please visit the [official documentation](https://fireact.dev/saas).
+For installation instructions, please visit the [official documentation](https://docs.fireact.dev/saas/getting-started/).
 
 ## Key Features
 
