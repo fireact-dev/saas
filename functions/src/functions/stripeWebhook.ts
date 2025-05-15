@@ -53,8 +53,8 @@ export const stripeWebhook = https.onRequest(async (request, response) => {
       await subscriptionRef.update({
         stripe_customer_id: subscription.customer as string,
         stripe_items: stripe_items,
-        subscription_current_period_end: subscription.current_period_end,
-        subscription_current_period_start: subscription.current_period_start,
+        subscription_current_period_end: subscription.items.data[0] ? (subscription.items.data[0] as any).current_period_end : null,
+        subscription_current_period_start: subscription.items.data[0] ? (subscription.items.data[0] as any).current_period_start : null,
         subscription_end: subscription.ended_at || null,
         subscription_start: subscription.start_date,
         status: subscription.status,
