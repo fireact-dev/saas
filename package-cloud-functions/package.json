@@ -1,6 +1,6 @@
 {
   "name": "@fireact.dev/saas-cloud-functions",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Firebase Cloud Functions for SaaS applications, providing Stripe integration, subscription management, and automated billing workflows. Essential backend functionality for @fireact.dev/saas applications.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
