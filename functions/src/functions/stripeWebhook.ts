@@ -61,31 +61,43 @@ export const stripeWebhook = https.onRequest(async (request, response) => {
       });
     } else if (event.type.startsWith('invoice.')) {
       const invoice = event.data.object as Stripe.Invoice;
+      console.log('Processing invoice event:', event.type, invoice.id);
+      
+      // Get subscription ID from either direct field or nested parent.subscription_details
+      const subscriptionId = typeof invoice.subscription === 'string' ? invoice.subscription : 
+                           (invoice as any).parent?.subscription_details?.subscription;
       
       // Only process invoices that are associated with a subscription
-      if (invoice.subscription) {
-        const subscriptionRef = db.collection('subscriptions').doc(invoice.subscription as string);
+      if (subscriptionId && typeof subscriptionId === 'string') {
+        console.log('Found associated subscription:', subscriptionId);
+        const subscriptionRef = db.collection('subscriptions').doc(subscriptionId);
+        console.log('Invoice data:', {
+          id: invoice.id,
+          amount_due: invoice.amount_due,
+          status: invoice.status,
+          subscription: subscriptionId
+        });
         const invoiceRef = subscriptionRef.collection('invoices').doc(invoice.id);
 
-        // Create invoice data
+        // Create invoice data with null checks
         const invoiceData = {
-          amount_due: invoice.amount_due,
-          amount_paid: invoice.amount_paid,
-          amount_remaining: invoice.amount_remaining,
-          currency: invoice.currency,
-          customer: invoice.customer,
-          customer_email: invoice.customer_email,
-          customer_name: invoice.customer_name,
-          description: invoice.description,
-          hosted_invoice_url: invoice.hosted_invoice_url,
-          invoice_pdf: invoice.invoice_pdf,
-          number: invoice.number,
-          paid: invoice.paid,
-          payment_intent: invoice.payment_intent,
-          period_end: invoice.period_end,
-          period_start: invoice.period_start,
-          status: invoice.status,
-          subscription_id: invoice.subscription,
+          amount_due: invoice.amount_due || 0,
+          amount_paid: invoice.amount_paid || 0,
+          amount_remaining: invoice.amount_remaining || 0,
+          currency: invoice.currency || 'usd',
+          customer: invoice.customer as string,
+          customer_email: invoice.customer_email || null,
+          customer_name: invoice.customer_name || null,
+          description: invoice.description || null,
+          hosted_invoice_url: invoice.hosted_invoice_url || null,
+          invoice_pdf: invoice.invoice_pdf || null,
+          number: invoice.number || null,
+          paid: invoice.paid || false,
+          payment_intent: invoice.payment_intent as string || null,
+          period_end: invoice.period_end || null,
+          period_start: invoice.period_start || null,
+          status: invoice.status || 'draft',
+          subscription_id: subscriptionId,
           total: invoice.total,
           created: invoice.created,
           due_date: invoice.due_date,
