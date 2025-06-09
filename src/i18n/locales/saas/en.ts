@@ -15,7 +15,7 @@ export default {
         "planNotFound": "Plan not found",
         "createError": "Failed to create subscription",
         "updateError": "Failed to update subscription",
-        "your": "Your {{type}}s",
+        "your": "Your {{type}}",
         "id": "Project ID",
         "name": "Project Name",
         "settings": "Settings",
