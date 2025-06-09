@@ -174,7 +174,7 @@ export default function SubscriptionLayout({
           </div>
 
           {/* Mobile menu */}
-          <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} lg:hidden ${navBackgroundColor || 'bg-gray-900'}`}>
+          <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} lg:hidden ${navBackgroundColor || 'bg-gray-900'} ${navTextColor || 'text-gray-200'}`}>
             {/* Divider */}
             <div className="border-t border-gray-700"></div>
             
@@ -186,14 +186,14 @@ export default function SubscriptionLayout({
                 className={`block px-3 py-2 rounded-md text-base font-medium ${
                   location.pathname === pages.profile
                     ? 'bg-indigo-100 text-indigo-600'
-                    : 'text-gray-200 hover:bg-gray-700'
+                    : 'hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 {t('myProfile')}
               </Link>
               <button
                 onClick={handleSignOut}
-                className="w-full text-left px-3 py-2 text-base font-medium text-gray-200 hover:bg-gray-700 rounded-md"
+                className="w-full text-left px-3 py-2 text-base font-medium hover:bg-gray-700 hover:text-white rounded-md"
               >
                 {t('signout')}
               </button>

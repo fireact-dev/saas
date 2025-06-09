@@ -232,7 +232,7 @@ export const SubscriptionMobileMenu = () => {
         className={`group flex items-center px-2 py-2 text-base font-medium rounded-md ${
           location.pathname === config.pages.home
             ? 'bg-indigo-100 text-indigo-600'
-            : 'text-gray-200 hover:bg-gray-700 hover:text-white'
+            : 'hover:bg-gray-700 hover:text-white'
         }`}
       >
         <svg
@@ -265,7 +265,7 @@ export const SubscriptionMobileMenu = () => {
         className={`group flex items-center px-2 py-2 text-base font-medium rounded-md ${
           !location.pathname.includes('/billing') && !location.pathname.includes('/settings') && !location.pathname.includes('/users')
             ? 'bg-indigo-100 text-indigo-600'
-            : 'text-gray-200 hover:bg-gray-700 hover:text-white'
+            : 'hover:bg-gray-700 hover:text-white'
         }`}
       >
         <svg
@@ -299,7 +299,7 @@ export const SubscriptionMobileMenu = () => {
             className={`group flex items-center px-2 py-2 text-base font-medium rounded-md ${
               location.pathname.includes('/users')
                 ? 'bg-indigo-100 text-indigo-600'
-                : 'text-gray-200 hover:bg-gray-700 hover:text-white'
+                : 'hover:bg-gray-700 hover:text-white'
             }`}
           >
             <svg
@@ -328,7 +328,7 @@ export const SubscriptionMobileMenu = () => {
             className={`group flex items-center px-2 py-2 text-base font-medium rounded-md ${
               location.pathname.includes('/billing')
                 ? 'bg-indigo-100 text-indigo-600'
-                : 'text-gray-200 hover:bg-gray-700 hover:text-white'
+                : 'hover:bg-gray-700 hover:text-white'
             }`}
           >
             <svg
@@ -357,7 +357,7 @@ export const SubscriptionMobileMenu = () => {
             className={`group flex items-center px-2 py-2 text-base font-medium rounded-md ${
               location.pathname.includes('/settings')
                 ? 'bg-indigo-100 text-indigo-600'
-                : 'text-gray-200 hover:bg-gray-700 hover:text-white'
+                : 'hover:bg-gray-700 hover:text-white'
             }`}
           >
             <svg
